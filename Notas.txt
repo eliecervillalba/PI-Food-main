@@ -1,0 +1,19 @@
+DATE: Saturday, April 9/2022.
+AUTHOR: Eliecer Villalba Ruiz
+GITHUB: https://github.com/evillalba510/PI-Food-main.git
+
+PROJECT: FOOD.
+
+TASKS:
+
+1. Leer, comprender y sacar concluciones del readme.md
+2. Constucción del BackEnd (api):
+  - Routs
+  - Data Base (sequerlize / postgres)
+  - pruebas postman.
+3. construccion del FrontEnd (client)
+  - Componentes.
+  - Estados Redux.
+4. Prueba Funcionales.
+5. Constricción de testers (opcional)
+6. Conclusiones.
