@@ -1,19 +1,37 @@
 DATE: Saturday, April 9/2022.
-AUTHOR: Eliecer Villalba Ruiz
+STUDENT: Eliecer Villalba Ruiz
 GITHUB: https://github.com/evillalba510/PI-Food-main.git
 
 PROJECT: FOOD.
 
 TASKS:
 
-1. Leer, comprender y sacar concluciones del readme.md
-2. Constucción del BackEnd (api):
-  - Routs
-  - Data Base (sequerlize / postgres)
-  - pruebas postman.
-3. construccion del FrontEnd (client)
+1. Leer y comprender bien el readme.md
+2. instalar node_modules en las carpetas api y client.
+3. Desarrollo del BackEnd (api):  
+  3.1 Crear y configurar arhivo .env la carpeta api.
+  3.2 Cear usuario de la api externa spoonacular y obtener la API Key.
+  3.3 Configurar la variable "YOUR_API_KEY" con la la API Key el arvhivo .env
+  3.4 Crear db "food" en postgres.
+  3.5 Crear Modelos Recipe.js y Diet.js
+  3.6 Establecer relación muchos a muchos entre los modelos Recipe y Diet en db.js
+...
+  3.7 Crear Routes: recipe.js, recipes.js, diet.js
+  
+4. Desarrollo del FrontEnd (client)
   - Componentes.
   - Estados Redux.
-4. Prueba Funcionales.
-5. Constricción de testers (opcional)
-6. Conclusiones.
+  - Estilos.
+5. Prueba Funcionales.
+6. Construcción de testers (opcional).
+
+
+TOOLS:
+
+spoonacular
+https://spoonacular.com/food-api/console#
+usename: evillalba510@gmail.com
+password: 12345
+API Key: 6f7d9f7b224d4411a97abba0d56946be
+Example request:
+https://api.spoonacular.com/food/products/search?query=yogurt&apiKey=6f7d9f7b224d4411a97abba0d56946be
