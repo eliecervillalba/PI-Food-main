@@ -4,23 +4,24 @@ const { DataTypes } = require("sequelize");
 
 /* Atributos del modelo recipe (receta):
   id: id de la receta / UUID / PRIMARY KEY
-  name: nombre de la receta / STRING
+  title: nombre o título de la receta / STRING
   summary: resumen del plato / TEXT
-  score: puntuación / FLOAT
+  spoonacularScore: puntuación / FLOAT
   healthScore: Nivel de "comida saludable" / FLOAT
-  steps: paso a paso / ARRAY
+  analyzedInstructions: paso a paso / ARRAY
   image: imagen del plato / TEXT  
+  createOwnner: identifica si es creado por el usuario / BOOLEAN
  */
 
 module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define("recipe", {
     id: {
-      type: DataTypes.UUID,
+      type: DataTypes.UUID, // para que no colisione con ninguno de la API.
       defaultValue: DataTypes.UUIDV1,
       primaryKey: true,
     },
-    name: {
+    title: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -28,7 +29,7 @@ module.exports = (sequelize) => {
       type: DataTypes.TEXT,
       allowNull: false,
     },
-    score: {
+    spoonacularScore: {
       type: DataTypes.FLOAT,
       defaultValue: 0,
       validate: { min: 0, max: 100 },
@@ -38,12 +39,18 @@ module.exports = (sequelize) => {
       defaultValue: 0,
       validate: { min: 0, max: 100 },
     },
-    steps: {
+    analyzedInstructions: {
       type: DataTypes.ARRAY(DataTypes.JSON),
       allowNull: true,
     },
     image: {
       type: DataTypes.TEXT,
+    },
+    createOwnner: {
+      // atributo para identificar las recetas creadas por el usuario, NO API.
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false,
     },
   });
 };

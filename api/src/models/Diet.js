@@ -9,10 +9,13 @@ module.exports = (sequelize) => {
   // definir modelo
   sequelize.define("diet", {
     id: {
-      type: DataTypes.UUID,
-      primaryKey: true,
+      type: DataTypes.UUID, // para que no colisione con ninguno de la API.
       defaultValue: DataTypes.UUIDV1,
+      primaryKey: true,
     },
-    name: { types: DataTypes.STRING, allowNull: false },
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
   });
 };
