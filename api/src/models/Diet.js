@@ -7,15 +7,19 @@ const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
   // definir modelo
-  sequelize.define("diet", {
-    id: {
-      type: DataTypes.UUID, // para que no colisione con ninguno de la API.
-      defaultValue: DataTypes.UUIDV1,
-      primaryKey: true,
+  sequelize.define(
+    "diet",
+    {
+      id: {
+        type: DataTypes.UUID, // para que no colisione con ninguno de la API.
+        defaultValue: DataTypes.UUIDV1,
+        primaryKey: true,
+      },
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
     },
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-  });
+    { timestamps: false }
+  );
 };

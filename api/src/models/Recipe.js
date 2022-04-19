@@ -15,42 +15,46 @@ const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
   // defino el modelo
-  sequelize.define("recipe", {
-    id: {
-      type: DataTypes.UUID, // para que no colisione con ninguno de la API.
-      defaultValue: DataTypes.UUIDV1,
-      primaryKey: true,
+  sequelize.define(
+    "recipe",
+    {
+      id: {
+        type: DataTypes.UUID, // para que no colisione con ninguno de la API.
+        defaultValue: DataTypes.UUIDV4,
+        primaryKey: true,
+      },
+      title: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      summary: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+      },
+      spoonacularScore: {
+        type: DataTypes.FLOAT,
+        defaultValue: 0,
+        validate: { min: 0, max: 100 },
+      },
+      healthScore: {
+        type: DataTypes.FLOAT,
+        defaultValue: 0,
+        validate: { min: 0, max: 100 },
+      },
+      analyzedInstructions: {
+        type: DataTypes.ARRAY(DataTypes.JSON),
+        allowNull: true,
+      },
+      image: {
+        type: DataTypes.TEXT,
+      },
+      createOwnner: {
+        // atributo para identificar las recetas creadas por el usuario, NO API.
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false,
+      },
     },
-    title: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    summary: {
-      type: DataTypes.TEXT,
-      allowNull: false,
-    },
-    spoonacularScore: {
-      type: DataTypes.FLOAT,
-      defaultValue: 0,
-      validate: { min: 0, max: 100 },
-    },
-    healthScore: {
-      type: DataTypes.FLOAT,
-      defaultValue: 0,
-      validate: { min: 0, max: 100 },
-    },
-    analyzedInstructions: {
-      type: DataTypes.ARRAY(DataTypes.JSON),
-      allowNull: true,
-    },
-    image: {
-      type: DataTypes.TEXT,
-    },
-    createOwnner: {
-      // atributo para identificar las recetas creadas por el usuario, NO API.
-      type: DataTypes.BOOLEAN,
-      allowNull: false,
-      defaultValue: false,
-    },
-  });
+    { timestamps: false }
+  );
 };
