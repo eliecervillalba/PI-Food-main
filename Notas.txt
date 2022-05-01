@@ -2,29 +2,34 @@ DATE: Saturday, April 9/2022.
 STUDENT: Eliecer Villalba Ruiz
 GITHUB: https://github.com/evillalba510/PI-Food-main.git
 
-PROJECT: FOOD.
+PROJECT: FOOD
 
-TASKS:
+BackEnd DEVELOP:
 
-1. Leer y comprender bien el readme.md
-2. instalar node_modules en las carpetas api y client.
-3. Desarrollo del BackEnd (api):  
-  3.1 Crear y configurar arhivo .env la carpeta api.
-  3.2 Cear usuario de la api externa spoonacular y obtener la API Key.
-  3.3 Configurar la variable "YOUR_API_KEY" con la la API Key el arvhivo .env
-  3.4 Crear db "food" en postgres.
-  3.5 Crear Modelos Recipe.js y Diet.js
-  3.6 Establecer relación muchos a muchos entre los modelos Recipe y Diet en db.js
-...
-  3.7 Crear Routes: recipe.js, recipes.js, diet.js
-  
-4. Desarrollo del FrontEnd (client)
-  - Componentes.
-  - Estados Redux.
-  - Estilos.
-5. Prueba Funcionales.
-6. Construcción de testers (opcional).
+a. Instalar node_modules en las carpetas api.
+b. En la carpera api/src.
+  - Crear y configurar arhivo .env con las variables de entorno del Boilerplate.
+  - Cear usuario en spoonacular y obtener la API Key.
+  - Configurar en el archivo .env la variable de entorno "API_KEY".
+  - Crear db "food" en postgres.
+  - En la carpeta Model: crear Modelos recipe.js y types.js
+  - Establecer relación muchos a muchos entre los modelos Recipe y Types en db.js
+  - En la carpeta Routes: crear Routes: recipe.js, recipes.js, types.js
+  - En la carpeta controllers:
+      * Crear apiDiet.json para almacenar las tipos de dieta y usarlas posteriormente.
+      * Crear apiRecipes.json para almacenar las recetas y usarlas posteriormente.
 
+      nota: el propósito es que se puedan utilizar los JSON todas las veces que se requiera sin tener que hacer request a la API externa para evitar bloqueos autorización de cuenta.
+
+      * Crear dataRecipes.js donde se manejan las funciones de extracción de datos del API,
+        la base de datos y luego se concatenan en un array.
+
+  - Probar las rutas en el navegador / postman:
+      * localhost:3001/recipes :  para traer todas las recetas.
+      * localhost:3001/recipes?name=rice : para filtrar recetas por palabra.
+      * localhost:3001/recipes/716426 : para buscar receta por id.
+      * localhost:3001/recipe : para insetar una receta por body en la bd.
+      
 
 TOOLS:
 

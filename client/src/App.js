@@ -1,9 +1,23 @@
-import './App.css';
+/* importar React */
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import "./App.css";
+
+/* importar componentes */
+import Main from "./Components/Main";
+import Home from "./Components/Home";
+import DetailsRecipe from "./Components/DetailsRecipe";
+import CreateRecipe from "./Components/CreateRecipe";
 
 function App() {
   return (
     <div className="App">
-      <h1>Henry Food</h1>
+      <Routes>
+        <Route exact path="/" element={<Main />} />
+        <Route exact path="/home" element={<Home />} />
+        <Route exact path="/recipes/:id" element={<DetailsRecipe />} />
+        <Route exact path="/recipe" element={<CreateRecipe />} />
+      </Routes>
     </div>
   );
 }
