@@ -2,6 +2,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+// import styles
 import "./CardRecipe.css";
 
 function CardRecipe({ id, image, title, diets }) {
@@ -13,11 +14,8 @@ function CardRecipe({ id, image, title, diets }) {
         </Link>
         <div className="row">
           <div className="col-sm-4 col-md-4 col-lg-4">
-            <p>Types Diet:</p>
-            {/* {diets?.map((e) => {
-              return <p key={e}>{e}</p>;
-            })} */}
-            <p>{diets.toString()}</p>
+            <h4>Types Diet:</h4>
+            <p>{diets.join(", ")}</p>
           </div>
           <div className="col-sm-4 col-md-4 col-lg-4">
             <img

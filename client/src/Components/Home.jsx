@@ -3,23 +3,28 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 // import Actions
-import { getAllRecipes } from "../Core/Actions";
+import { getAllRecipes, getTypesDiet } from "../Core/Actions";
 
 // import styles
 import "./Home.css";
 
 // import components
-import SearchBarRecipe from "./SeachBarRecipe";
+import SearchBar from "./SeachBar";
+import FilterByTypes from "./FilterByTypes";
+import SortByName from "./SortByName";
 import CardsRecipe from "./CardsRecipe";
 
 export default function Home() {
-  // destructuring list
-  const recipes = useSelector((state) => state.allRecipes);
+  // destructuring and
   const dispatch = useDispatch();
-  // useEffects
+  const typesDiet = useSelector((state) => state.typesDiet);
+  const Recipes = useSelector((state) => state.Recipes);
+  //console.log(recipesCopy);
 
+  // useEffects
   useEffect(() => {
     dispatch(getAllRecipes());
+    dispatch(getTypesDiet());
   }, [dispatch]);
 
   // render components
@@ -28,11 +33,23 @@ export default function Home() {
       <h1>YOUR FAVORITE RECIPES</h1>
 
       <div className="sb-container">
-        <SearchBarRecipe />
+        <SearchBar />
       </div>
 
       <div>
-        <CardsRecipe recipes={recipes} />
+        <FilterByTypes typesDiet={typesDiet} />
+      </div>
+
+      <div>
+        <SortByName />
+      </div>
+
+      <div>
+        {Recipes ? (
+          <CardsRecipe Recipes={Recipes} />
+        ) : (
+          <h1>There are no recipes to display!</h1>
+        )}
       </div>
     </div>
   );

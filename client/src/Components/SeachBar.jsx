@@ -1,33 +1,35 @@
 // import libraries
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { getRecipeByWord } from "../Core/Actions";
-import "./SearchBarRecipe.css";
+import { getRecipeByKeyword } from "../Core/Actions";
 
-function SearchBarRecipe() {
+// import styles
+import "./SearchBar.css";
+
+function SearchBar() {
   // create local state and dispatch
-  const [word, setWord] = useState("");
+  const [keyword, setKeyword] = useState("");
   const dispatch = useDispatch();
 
   // updates the state every time a change occurs in the input
-  function handleChange(event) {
-    setWord(event.target.value);
+  function handleChange(e) {
+    setKeyword(e.target.value);
   }
 
-  function handleSubmit(event) {
+  function handleSubmit(e) {
     // prevent the form from updating
-    event.preventDefault();
+    e.preventDefault();
     // dispatch event
-    dispatch(getRecipeByWord(event));
+    dispatch(getRecipeByKeyword(keyword));
     // reset state
-    setWord("");
+    setKeyword("");
   }
 
   // render search bar
   return (
     <div className="searchBar-container">
       <input
-        value={word}
+        value={keyword}
         placeholder="Entry keyword..."
         type="text"
         onChange={(e) => handleChange(e)}
@@ -39,4 +41,5 @@ function SearchBarRecipe() {
   );
 }
 
-export default SearchBarRecipe;
+// export component
+export default SearchBar;

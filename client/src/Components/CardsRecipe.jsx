@@ -6,10 +6,10 @@ import "./CardsRecipe.css";
 import CardRecipe from "./CardRecipe";
 
 // Create component CardsRecipe
-function CardsRecipe({ recipes }) {
+function CardsRecipe({ Recipes }) {
   return (
     <div className="cards">
-      {recipes?.map((e) => (
+      {Recipes?.map((e) => (
         <CardRecipe
           key={e.id}
           id={e.id}

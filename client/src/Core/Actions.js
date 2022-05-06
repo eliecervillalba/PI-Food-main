@@ -18,7 +18,7 @@ export function getAllRecipes() {
 }
 
 // GET RECIPES BY KEYWORD: get all recipes searching by keyword
-export function getRecipeByWord(keyWord) {
+export function getRecipeByKeyword(keyWord) {
   return async (dispatch) => {
     try {
       const response = await axios.get(`/recipes?name=${keyWord}`);
@@ -51,7 +51,7 @@ export function getDetailsRecipe(idRecipe) {
 export function getTypesDiet() {
   return async (dispatch) => {
     try {
-      const response = await axios.get(`/types}`);
+      const response = await axios.get(`/types`);
       return dispatch({
         type: "GET_TYPES_DIET",
         payload: response.data,
@@ -62,9 +62,55 @@ export function getTypesDiet() {
   };
 }
 
+// SET FILTER TYPES DIET: set filter by types diet
+export function filterByTypesDiet(payload, allRecipes) {
+  let recipesByTypes = [];
+  if (payload !== "all") {
+    recipesByTypes = allRecipes?.filter((e) => e.diets.includes(payload));
+  } else recipesByTypes = allRecipes;
+
+  return (dispatch) => {
+    dispatch({
+      type: "FILTER_TYPES_DIET",
+      payload: recipesByTypes,
+      diet: payload,
+    });
+  };
+}
+
+// SORT BY NAME
+export function sortByName(payload, allRecipes) {
+  let arrSorted = [];
+  if (payload === "asc") {
+    arrSorted = allRecipes.sort((first, second) => {
+      if (first.title > second.title) return 1;
+      if (first.title < second.title) return -1;
+      return 0;
+    });
+    console.warn(arrSorted);
+  } else {
+    // if payload = 'desc'
+    arrSorted = allRecipes.sort((first, second) => {
+      if (first.title > second.title) return -1;
+      if (first.title < second.title) return 1;
+      return 0;
+    });
+  }
+  return (dispatch) => {
+    dispatch({
+      type: "SORT_BY_NAME",
+      payload: arrSorted,
+    });
+  };
+}
+
 // Create Recipe (POST)
 export function postRecipe(payload) {
   return async (dispatch) => {
-    return await axios.post(`/recipe`, payload);
+    try {
+      return await axios.post(`/recipe`, payload);
+    } catch (error) {
+      console.log(error);
+    }
   };
 }
