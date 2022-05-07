@@ -79,18 +79,17 @@ export function filterByTypesDiet(payload, allRecipes) {
 }
 
 // SORT BY NAME
-export function sortByName(payload, allRecipes) {
-  let arrSorted = [];
+export function sortByName(payload, Recipes) {
+  var arrSorted = [];
   if (payload === "asc") {
-    arrSorted = allRecipes.sort((first, second) => {
+    arrSorted = Recipes.sort((first, second) => {
       if (first.title > second.title) return 1;
       if (first.title < second.title) return -1;
       return 0;
     });
-    console.warn(arrSorted);
   } else {
     // if payload = 'desc'
-    arrSorted = allRecipes.sort((first, second) => {
+    arrSorted = Recipes.sort((first, second) => {
       if (first.title > second.title) return -1;
       if (first.title < second.title) return 1;
       return 0;

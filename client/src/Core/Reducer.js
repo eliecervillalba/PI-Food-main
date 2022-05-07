@@ -10,6 +10,7 @@ const intialState = {
 
 // build reducer
 const recipeReducer = (state = intialState, { type, payload, diet }) => {
+  console.log(type, payload);
   // case actons
   switch (type) {
     case "GET_ALL_RECIPES":

@@ -9,20 +9,20 @@ import { sortByName } from "../Core/Actions";
 import "./SortByName.css";
 
 // build componenet
-function SortByName() {
-  const allRecipes = useSelector((state) => state.allRecipes);
+function SortByName({ Recipes, local, setLocal }) {
   const dispath = useDispatch();
 
   // handle function
   function handleSortByName(e) {
-    dispath(sortByName(e.target.value, allRecipes));
+    dispath(sortByName(e.target.value, Recipes));
+    setLocal(!local);
   }
 
   // render component
   return (
     <div>
       <select onChange={(e) => handleSortByName(e)}>
-        <option value="asc">-Select-</option>
+        <option value="null">-Select-</option>
         <option value="asc">Acending</option>
         <option value="des">Decending</option>
       </select>

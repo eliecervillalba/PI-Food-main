@@ -1,5 +1,5 @@
 // import libraries
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 // import Actions
@@ -19,13 +19,24 @@ export default function Home() {
   const dispatch = useDispatch();
   const typesDiet = useSelector((state) => state.typesDiet);
   const Recipes = useSelector((state) => state.Recipes);
-  //console.log(recipesCopy);
+
+  // estado
+  const [local, setLocal] = useState(true);
 
   // useEffects
   useEffect(() => {
     dispatch(getAllRecipes());
     dispatch(getTypesDiet());
   }, [dispatch]);
+
+  const Prueba = () => {
+    const Recipes1 = useSelector((state) => state.Recipes);
+    return <></>;
+  };
+
+  useEffect(() => {
+    <Prueba />;
+  }, [local]);
 
   // render components
   return (
@@ -41,7 +52,7 @@ export default function Home() {
       </div>
 
       <div>
-        <SortByName />
+        <SortByName Recipes={Recipes} local={local} setLocal={setLocal} />
       </div>
 
       <div>
