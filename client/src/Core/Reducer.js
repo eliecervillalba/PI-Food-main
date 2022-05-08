@@ -9,7 +9,7 @@ const intialState = {
 };
 
 // build reducer
-const recipeReducer = (state = intialState, { type, payload, diet }) => {
+const rootReducer = (state = intialState, { type, payload, diet }) => {
   console.log(type, payload);
   // case actons
   switch (type) {
@@ -63,4 +63,4 @@ const recipeReducer = (state = intialState, { type, payload, diet }) => {
 };
 
 // export reducer
-export default recipeReducer;
+export default rootReducer;
