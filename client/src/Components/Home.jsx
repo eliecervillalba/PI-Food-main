@@ -11,8 +11,7 @@ import "./Home.css";
 // import components
 import SearchBar from "./SeachBar";
 import FilterByTypes from "./FilterByTypes";
-import SortByName from "./SortByName";
-import SortByScore from "./SortByScore";
+import SortBy from "./SortBy";
 import CardsRecipes from "./CardsRecipes";
 
 function Home() {
@@ -45,10 +44,7 @@ function Home() {
           Filter by Diet: <FilterByTypes />
         </h5>
         <h5>
-          Order by title: <SortByName />
-        </h5>
-        <h5>
-          Order by score: <SortByScore />
+          Order by: <SortBy />
         </h5>
       </div>
 
