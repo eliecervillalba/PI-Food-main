@@ -2,14 +2,13 @@
 const intialState = {
   allRecipes: [],
   Recipes: [],
-  recipesByKeyword: [],
   detailsRecipe: [],
   typesDiet: [],
-  diet: "",
+  order: false,
 };
 
 // build reducer
-const rootReducer = (state = intialState, { type, payload, diet }) => {
+const rootReducer = (state = intialState, { type, payload }) => {
   console.log(type, payload);
   // case actons
   switch (type) {
@@ -24,7 +23,6 @@ const rootReducer = (state = intialState, { type, payload, diet }) => {
       return {
         ...state,
         Recipes: payload,
-        recipesByKeyword: payload,
       };
 
     case "GET_DETAILS_RECIPE":
@@ -42,14 +40,40 @@ const rootReducer = (state = intialState, { type, payload, diet }) => {
     case "FILTER_TYPES_DIET":
       return {
         ...state,
-        Recipes: payload,
-        diet: diet,
+        Recipes:
+          payload.dietName === "all"
+            ? payload.recipes
+            : payload.recipes?.filter((e) => {
+                return e.diets.includes(payload.dietName);
+              }),
       };
 
     case "SORT_BY_NAME":
       return {
         ...state,
-        Recipes: payload,
+        Recipes:
+          payload.typeOrder === "asc"
+            ? payload.recipes.sort((f, s) => (f.title > s.title ? 1 : -1))
+            : payload.typeOrder === "des"
+            ? payload.recipes.sort((f, s) => (f.title > s.title ? -1 : 1))
+            : payload.recipes,
+        order: payload.order,
+      };
+
+    case "SORT_BY_SCORE":
+      return {
+        ...state,
+        Recipes:
+          payload.typeOrder === "low"
+            ? payload.recipes.sort((f, s) =>
+                f.spoonacularScore > s.spoonacularScore ? 1 : -1
+              )
+            : payload.typeOrder === "high"
+            ? payload.recipes.sort((f, s) =>
+                f.spoonacularScore > s.spoonacularScore ? -1 : 1
+              )
+            : payload.recipes,
+        order: payload.order,
       };
 
     case "POST_RECIPE":

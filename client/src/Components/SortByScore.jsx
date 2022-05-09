@@ -3,13 +3,13 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 // import actions
-import { sortByName } from "../Core/Actions";
+import { sortByScore } from "../Core/Actions";
 
 // import styles
-import "./SortByName.css";
+import "./SortByScore.css";
 
 // build componenet
-function SortByName() {
+function SortByScore() {
   const Recipes = useSelector((state) => state.Recipes);
   const [order, setOrder] = useState(true);
   const dispath = useDispatch();
@@ -17,7 +17,7 @@ function SortByName() {
   // handle function
   function handleSort(e) {
     setOrder(!order);
-    dispath(sortByName(e.target.value, Recipes, order));
+    dispath(sortByScore(e.target.value, Recipes, order));
   }
 
   // render component
@@ -25,12 +25,12 @@ function SortByName() {
     <div>
       <select onChange={(e) => handleSort(e)}>
         <option value="null">-Select-</option>
-        <option value="asc">A to Z</option>
-        <option value="des">Z to A</option>
+        <option value="low">Low to High</option>
+        <option value="high">High to Low</option>
       </select>
     </div>
   );
 }
 
 // export component
-export default SortByName;
+export default SortByScore;

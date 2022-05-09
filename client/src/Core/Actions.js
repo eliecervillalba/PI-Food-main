@@ -63,42 +63,31 @@ export function getTypesDiet() {
 }
 
 // SET FILTER TYPES DIET: set filter by types diet
-export function filterByTypesDiet(payload, allRecipes) {
-  let recipesByTypes = [];
-  if (payload !== "all") {
-    recipesByTypes = allRecipes?.filter((e) => e.diets.includes(payload));
-  } else recipesByTypes = allRecipes;
-
+export function filterByTypesDiet(dietName, recipes) {
   return (dispatch) => {
     dispatch({
       type: "FILTER_TYPES_DIET",
-      payload: recipesByTypes,
-      diet: payload,
+      payload: { dietName, recipes },
     });
   };
 }
 
 // SORT BY NAME
-export function sortByName(payload, Recipes) {
-  var arrSorted = [];
-  if (payload === "asc") {
-    arrSorted = Recipes.sort((first, second) => {
-      if (first.title > second.title) return 1;
-      if (first.title < second.title) return -1;
-      return 0;
-    });
-  } else {
-    // if payload = 'desc'
-    arrSorted = Recipes.sort((first, second) => {
-      if (first.title > second.title) return -1;
-      if (first.title < second.title) return 1;
-      return 0;
-    });
-  }
+export function sortByName(typeOrder, recipes, order) {
   return (dispatch) => {
     dispatch({
       type: "SORT_BY_NAME",
-      payload: arrSorted,
+      payload: { typeOrder, recipes, order },
+    });
+  };
+}
+
+// SORT BY SCORE
+export function sortByScore(typeOrder, recipes, order) {
+  return (dispatch) => {
+    dispatch({
+      type: "SORT_BY_SCORE",
+      payload: { typeOrder, recipes, order },
     });
   };
 }

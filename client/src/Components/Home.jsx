@@ -1,6 +1,6 @@
 // import libraries
-import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 // import Actions
 import { getAllRecipes, getTypesDiet } from "../Core/Actions";
@@ -12,56 +12,53 @@ import "./Home.css";
 import SearchBar from "./SeachBar";
 import FilterByTypes from "./FilterByTypes";
 import SortByName from "./SortByName";
-import CardsRecipe from "./CardsRecipe";
+import SortByScore from "./SortByScore";
+import CardsRecipes from "./CardsRecipes";
 
-export default function Home() {
-  // destructuring and
+function Home() {
   const dispatch = useDispatch();
-  const typesDiet = useSelector((state) => state.typesDiet);
-  const Recipes = useSelector((state) => state.Recipes);
+  const order = useSelector((state) => state.order);
 
-  // estado
-  const [local, setLocal] = useState(true);
-
-  // useEffects
   useEffect(() => {
     dispatch(getAllRecipes());
     dispatch(getTypesDiet());
   }, [dispatch]);
 
-  const Prueba = () => {
-    const Recipes1 = useSelector((state) => state.Recipes);
-    return <></>;
-  };
-
   useEffect(() => {
-    <Prueba />;
-  }, [local]);
+    <CardsRecipes />;
+  }, [order]);
 
   // render components
   return (
     <div className="home-container">
+      {/* render title */}
       <h1>YOUR FAVORITE RECIPES</h1>
 
+      {/* render Search Bar */}
       <div className="sb-container">
         <SearchBar />
       </div>
 
+      {/* Render Fiter & Sort' */}
       <div>
-        <FilterByTypes typesDiet={typesDiet} />
+        <h5>
+          Filter by Diet: <FilterByTypes />
+        </h5>
+        <h5>
+          Order by title: <SortByName />
+        </h5>
+        <h5>
+          Order by score: <SortByScore />
+        </h5>
       </div>
 
+      {/* render Cards Recipes */}
       <div>
-        <SortByName Recipes={Recipes} local={local} setLocal={setLocal} />
-      </div>
-
-      <div>
-        {Recipes ? (
-          <CardsRecipe Recipes={Recipes} />
-        ) : (
-          <h1>There are no recipes to display!</h1>
-        )}
+        <CardsRecipes />
       </div>
     </div>
   );
 }
+
+//export component
+export default Home;

@@ -9,19 +9,20 @@ import { filterByTypesDiet } from "../Core/Actions";
 import "./FilterByTypes.css";
 
 // create component
-function FilterByTypes({ typesDiet }) {
+function FilterByTypes() {
   const allRecipes = useSelector((state) => state.allRecipes);
+  const typesDiet = useSelector((state) => state.typesDiet);
   const dispatch = useDispatch();
 
   // handle functions
-  function handleFilterByTypes(e) {
+  function handleFilter(e) {
     dispatch(filterByTypesDiet(e.target.value, allRecipes));
   }
 
   // render component
   return (
     <div>
-      <select onChange={(e) => handleFilterByTypes(e)}>
+      <select onChange={(e) => handleFilter(e)}>
         <option value="all">All Diets</option>
         {typesDiet?.map((diet) => (
           <option key={diet.name} value={diet.name}>
