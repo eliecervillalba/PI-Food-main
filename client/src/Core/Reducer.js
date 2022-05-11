@@ -5,6 +5,7 @@ const intialState = {
   detailsRecipe: [],
   typesDiet: [],
   order: false,
+  countPage: { prev: 0, current: 1, next: 9 },
 };
 
 // build reducer
@@ -48,7 +49,7 @@ const rootReducer = (state = intialState, { type, payload }) => {
               }),
       };
 
-    case "SORT_BY_NAME":
+    case "SORT_BY_TITLE":
       return {
         ...state,
         Recipes:
@@ -79,6 +80,12 @@ const rootReducer = (state = intialState, { type, payload }) => {
     case "POST_RECIPE":
       return {
         ...state,
+      };
+
+    case "SET_PAGE":
+      return {
+        ...state,
+        countPage: payload,
       };
 
     default:

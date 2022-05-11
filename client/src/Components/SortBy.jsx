@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 // import actions
-import { sortByName, sortByScore } from "../Core/Actions";
+import { sortByTitle, sortByScore } from "../Core/Actions";
 
 // import styles
 import "./SortBy.css";
@@ -18,7 +18,7 @@ function SortBy() {
   function handleSort(e) {
     if (e.target.value === "asc" || e.target.value === "des") {
       setOrder(!order);
-      dispath(sortByName(e.target.value, Recipes, order));
+      dispath(sortByTitle(e.target.value, Recipes, order));
     } else if (e.target.value === "low" || e.target.value === "high") {
       setOrder(!order);
       dispath(sortByScore(e.target.value, Recipes, order));
@@ -29,11 +29,11 @@ function SortBy() {
   return (
     <div>
       <select onChange={(e) => handleSort(e)}>
-        <option value="null">-Select-</option>
+        <option value="null">- Select -</option>
         <option value="asc">Title A to Z</option>
         <option value="des">Title Z to A</option>
-        <option value="low">Score LOW</option>
-        <option value="high">Score HIGH</option>
+        <option value="low">LOW Score</option>
+        <option value="high">HIGH Score</option>
       </select>
     </div>
   );

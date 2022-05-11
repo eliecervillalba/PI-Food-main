@@ -5,7 +5,7 @@
 
 const { Router } = require("express");
 const router = Router();
-const { Recipe, Types } = require("../db");
+const { Recipe, Type } = require("../db");
 
 //  POST /recipe:
 //  Recibe los datos recolectados desde el formulario controlado de la ruta de creación
@@ -23,6 +23,7 @@ router.post("/", async (req, res) => {
     image,
     createOwnner,
   } = req.body;
+  console.log("body", req.body);
 
   // dataForAdd es una instancia de la creación de una receta.
   const dataForAdd = await Recipe.create({
@@ -30,12 +31,24 @@ router.post("/", async (req, res) => {
     summary,
     spoonacularScore,
     healthScore,
-    analyzedInstructions,
+    diets,
+    analyzedInstructions: [{ number: 1, step: analyzedInstructions }],
     image,
     createOwnner,
   });
 
-  dataForAdd.addTypes(await Types.findAll({ where: { name: diets } }));
+  console.log(analyzedInstructions);
+
+  diets.map(async (el) => {
+    console.log(el);
+    const typesDiet = await Type.findAll({
+      where: {
+        name: el,
+      },
+    });
+    await dataForAdd.addType(typesDiet);
+  });
+
   res.send("Recipe created successfully!");
 });
 

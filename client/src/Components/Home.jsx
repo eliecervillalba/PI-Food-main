@@ -9,10 +9,11 @@ import { getAllRecipes, getTypesDiet } from "../Core/Actions";
 import "./Home.css";
 
 // import components
-import SearchBar from "./SeachBar";
+import SearchBar from "./SearchBar";
 import FilterByTypes from "./FilterByTypes";
 import SortBy from "./SortBy";
 import CardsRecipes from "./CardsRecipes";
+import { Link } from "react-router-dom";
 
 function Home() {
   const dispatch = useDispatch();
@@ -41,17 +42,27 @@ function Home() {
       {/* Render Fiter & Sort' */}
       <div>
         <h5>
-          Filter by Diet: <FilterByTypes />
+          Filter by Type Diet: <FilterByTypes />
         </h5>
         <h5>
           Order by: <SortBy />
         </h5>
       </div>
 
+      <div>
+        <Link to={"/recipe"}>
+          <button>Create Recipe</button>
+        </Link>
+      </div>
+
       {/* render Cards Recipes */}
       <div>
         <CardsRecipes />
       </div>
+
+      {/* <div>
+        <Pages />
+      </div> */}
     </div>
   );
 }

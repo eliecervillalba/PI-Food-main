@@ -73,10 +73,10 @@ export function filterByTypesDiet(dietName, recipes) {
 }
 
 // SORT BY NAME
-export function sortByName(typeOrder, recipes, order) {
+export function sortByTitle(typeOrder, recipes, order) {
   return (dispatch) => {
     dispatch({
-      type: "SORT_BY_NAME",
+      type: "SORT_BY_TITLE",
       payload: { typeOrder, recipes, order },
     });
   };
@@ -94,11 +94,19 @@ export function sortByScore(typeOrder, recipes, order) {
 
 // Create Recipe (POST)
 export function postRecipe(payload) {
-  return async (dispatch) => {
+  console.log("Arigato", payload);
+  return async () => {
     try {
       return await axios.post(`/recipe`, payload);
     } catch (error) {
       console.log(error);
     }
+  };
+}
+
+export function setPage(payload) {
+  return {
+    type: "SET_PAGE",
+    payload,
   };
 }

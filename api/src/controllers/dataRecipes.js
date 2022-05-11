@@ -8,7 +8,7 @@
 
 require("dotenv").config();
 const axios = require("axios");
-const { Recipe, Diet } = require("../db.js");
+const { Recipe, Type } = require("../db.js");
 const apiRecipes = require("./apiRecipes.json");
 const { API_KEY } = process.env;
 
@@ -50,7 +50,7 @@ const getDataApi = async () => {
 const getDataTable = async () => {
   return await Recipe.findAll({
     include: {
-      model: Diet,
+      model: Type,
       attributes: ["name"],
       through: {
         attributes: [],

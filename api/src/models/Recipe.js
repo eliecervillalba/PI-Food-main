@@ -41,6 +41,10 @@ module.exports = (sequelize) => {
         defaultValue: 0,
         validate: { min: 0, max: 100 },
       },
+      diets: {
+        type: DataTypes.ARRAY(DataTypes.STRING),
+        allowNull: true,
+      },
       analyzedInstructions: {
         type: DataTypes.ARRAY(DataTypes.JSON),
         allowNull: true,

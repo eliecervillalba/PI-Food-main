@@ -8,7 +8,7 @@ const { DataTypes } = require("sequelize");
 module.exports = (sequelize) => {
   // definir modelo
   sequelize.define(
-    "diet",
+    "type",
     {
       id: {
         type: DataTypes.UUID, // para que no colisione con ninguno de la API.
