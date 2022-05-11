@@ -30,12 +30,12 @@ function Home() {
 
   // render components
   return (
-    <div className="home-container">
+    <div>
       {/* render title */}
       <h1>YOUR FAVORITE RECIPES</h1>
 
       {/* render Search Bar */}
-      <div className="sb-container">
+      <div>
         <SearchBar />
       </div>
 
@@ -59,10 +59,6 @@ function Home() {
       <div>
         <CardsRecipes />
       </div>
-
-      {/* <div>
-        <Pages />
-      </div> */}
     </div>
   );
 }

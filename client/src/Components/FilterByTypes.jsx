@@ -5,9 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 //import actions
 import { filterByTypesDiet } from "../Core/Actions";
 
-// import styles
-import "./FilterByTypes.css";
-
 // create component
 function FilterByTypes() {
   const allRecipes = useSelector((state) => state.allRecipes);

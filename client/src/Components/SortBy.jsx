@@ -5,9 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 // import actions
 import { sortByTitle, sortByScore } from "../Core/Actions";
 
-// import styles
-import "./SortBy.css";
-
 // build componenet
 function SortBy() {
   const Recipes = useSelector((state) => state.Recipes);

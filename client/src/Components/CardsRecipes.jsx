@@ -10,7 +10,6 @@ import { setPage } from "../Core/Actions";
 // Create component CardsRecipe
 function CardsRecipes() {
   const Recipes = useSelector((state) => state.Recipes);
-  const countPage = useSelector((state) => state.countPage);
 
   const [prev, setPrev] = useState(0);
   const [current, setCurrent] = useState(1);
@@ -36,7 +35,6 @@ function CardsRecipes() {
     }
   }
 
-  console.log("cards", prev, next);
   return (
     <div className="cards">
       <div>

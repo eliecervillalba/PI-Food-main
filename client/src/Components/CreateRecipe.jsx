@@ -1,15 +1,18 @@
 // import libraries, hooks and styles
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { postRecipe } from "../Core/Actions";
-import "./CreateRecipe.css";
+import { getTypesDiet, postRecipe } from "../Core/Actions";
 
 // build component
 function CreateRecipe() {
   const typesDiet = useSelector((state) => state.typesDiet);
   const dispatch = useDispatch();
 
-  // create state local for the inputs
+  useEffect(() => {
+    dispatch(getTypesDiet());
+  }, [dispatch]);
+
+  // create state local for the inputs and error
   const [inputs, setInputs] = useState({
     title: "",
     summary: "",
@@ -21,6 +24,21 @@ function CreateRecipe() {
     createOwnner: true,
   });
 
+  const [error, setError] = useState({});
+  function validateError(inputs) {
+    let objError = {};
+    if (!inputs.title) return (objError.name = "Name is required!");
+    if (!inputs.summary) return (objError.summary = "Summary is required!");
+    if (!inputs.spoonacularScore < 0 || !inputs.spoonacularScore > 100)
+      return (objError.spoonacularScore =
+        "The score cannot be below 0 or above 100.");
+    if (!inputs.healthScore < 0 || !inputs.healthScore > 100)
+      return (objError.healthScore =
+        "The Healthscore cannot be below 0 or above 100.");
+    return objError;
+  }
+
+  // build handle submit function
   function handleSubmit(e) {
     e.preventDefault();
     dispatch(postRecipe(inputs));
@@ -39,6 +57,7 @@ function CreateRecipe() {
 
   function handleChange(e) {
     setInputs({ ...inputs, [e.target.name]: e.target.value });
+    setError(validateError({ ...inputs, [e.target.name]: e.target.value }));
   }
 
   function handleAddSelect(e) {
@@ -59,6 +78,7 @@ function CreateRecipe() {
             name="title"
             onChange={(e) => handleChange(e)}
           />
+          {error.name && <p>{error.name}</p>}
 
           <p>Summary:</p>
           <textarea
@@ -67,9 +87,12 @@ function CreateRecipe() {
             name="summary"
             onChange={(e) => handleChange(e)}
           />
+          {error.summary && <p>{error.summary}</p>}
 
           <p>Types Diet:</p>
           <select onChange={(e) => handleAddSelect(e)}>
+            <option value="null">{"- Select -"}</option>
+
             {typesDiet?.map((diet) => {
               return (
                 <option key={diet.name} value={diet.name}>
@@ -86,6 +109,7 @@ function CreateRecipe() {
             name="spoonacularScore"
             onChange={(e) => handleChange(e)}
           />
+          {error.spoonacularScore && <p>{error.spoonacularScore}</p>}
 
           <p>HealthScore:</p>
           <input
@@ -94,6 +118,7 @@ function CreateRecipe() {
             name="healthScore"
             onChange={(e) => handleChange(e)}
           />
+          {error.healthScore && <p>{error.healthScore}</p>}
 
           <p>Intructions:</p>
           <textarea
@@ -115,6 +140,8 @@ function CreateRecipe() {
         <br />
         <br />
         <button>Submit</button>
+        <br />
+        <br />
       </form>
     </div>
   );

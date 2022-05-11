@@ -3,9 +3,6 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getRecipeByKeyword } from "../Core/Actions";
 
-// import styles
-import "./SearchBar.css";
-
 function SearchBar() {
   // create local state and dispatch
   const [keyword, setKeyword] = useState("");
@@ -27,7 +24,7 @@ function SearchBar() {
 
   // render search bar
   return (
-    <div className="searchBar-container">
+    <div>
       <input
         value={keyword}
         placeholder="Entry keyword..."
