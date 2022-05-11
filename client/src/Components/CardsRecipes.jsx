@@ -1,11 +1,11 @@
-// import libraries
+// import libraries and styles
 import React, { useState } from "react";
 import "./CardsRecipes.css";
+import { useDispatch, useSelector } from "react-redux";
+import { setPage } from "../Core/Actions";
 
 // import component CardRecipe
 import CardRecipe from "./CardRecipe";
-import { useDispatch, useSelector } from "react-redux";
-import { setPage } from "../Core/Actions";
 
 // Create component CardsRecipe
 function CardsRecipes() {
@@ -17,20 +17,23 @@ function CardsRecipes() {
 
   const dispatch = useDispatch();
 
+  const rangeByPage = 9; // jump range
+  const totalNumPages = Math.ceil(Recipes.length / rangeByPage); // total records
+
   function handlePrev(e) {
     if (current > 1) {
       setCurrent((current) => current - 1);
-      setPrev((prev) => prev - 9);
-      setNext((next) => next - 9);
+      setPrev((prev) => prev - rangeByPage);
+      setNext((next) => next - rangeByPage);
       dispatch(setPage({ prev, current, next }));
     }
   }
 
   function handleNext(e) {
-    if (current < 10) {
+    if (current < totalNumPages) {
       setCurrent((current) => current + 1);
-      setPrev((prev) => prev + 9);
-      setNext((next) => next + 9);
+      setPrev((prev) => prev + rangeByPage);
+      setNext((next) => next + rangeByPage);
       dispatch(setPage({ prev, current, next }));
     }
   }
@@ -38,11 +41,11 @@ function CardsRecipes() {
   return (
     <div className="cards">
       <div className="btn-containner">
+        {/* render button pager */}
         <button onClick={(e) => handlePrev(e)}>{"<<"}</button>
         <span> {current} </span>
         <button onClick={(e) => handleNext(e)}>{">>"}</button>
       </div>
-
       {Recipes.length ? (
         Recipes.slice(prev, next).map((e) => (
           <CardRecipe
