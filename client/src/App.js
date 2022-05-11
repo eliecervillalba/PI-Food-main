@@ -1,9 +1,9 @@
-/* importar React */
+/* import libraries */
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
 
-/* importar componentes */
+/* import components */
 import Main from "./Components/Main";
 import Home from "./Components/Home";
 import DetailsRecipe from "./Components/DetailsRecipe";

@@ -13,7 +13,7 @@ import SearchBar from "./SearchBar";
 import FilterByTypes from "./FilterByTypes";
 import SortBy from "./SortBy";
 import CardsRecipes from "./CardsRecipes";
-import { Link } from "react-router-dom";
+import NavBar from "./NavBar";
 
 function Home() {
   const dispatch = useDispatch();
@@ -31,28 +31,24 @@ function Home() {
   // render components
   return (
     <div>
-      {/* render title */}
-      <h1>YOUR FAVORITE RECIPES</h1>
+      {/* render NavBar */}
+      <NavBar />
+      <br />
+      <br />
 
-      {/* render Search Bar */}
       <div>
+        {/* render Search Bar */}
         <SearchBar />
       </div>
 
       {/* Render Fiter & Sort' */}
-      <div>
+      <div className="filterSort-containner">
         <h5>
           Filter by Type Diet: <FilterByTypes />
         </h5>
         <h5>
           Order by: <SortBy />
         </h5>
-      </div>
-
-      <div>
-        <Link to={"/recipe"}>
-          <button>Create Recipe</button>
-        </Link>
       </div>
 
       {/* render Cards Recipes */}

@@ -1,0 +1,68 @@
+#logoHenry {
+  margin-right: 20px;
+}
+
+.navbar {
+  height: 56px;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-color: #303236;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.navbar nav {
+  height: 100%;
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+h3 {
+  color: white;
+  font-weight: 400;
+  font-weight: bold;
+}
+
+.list {
+  margin: 5;
+  padding: 5;
+  list-style: none;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  height: 100%;
+  text-decoration: none;
+}
+
+.list-item {
+  margin: auto;
+  display: flex;
+  height: 100%;
+  width: auto;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.list-item a {
+  color: white;
+  height: 100%;
+  padding: 16px 10px;
+  border-bottom: 4px solid transparent;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.list-item a:hover,
+.list-item a.active {
+  /* background-color: #808080; */
+  color: white;
+  text-decoration: underline;
+}

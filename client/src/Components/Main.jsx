@@ -6,9 +6,9 @@ export default function Main() {
   return (
     <div className="container">
       <div className="title-container">
-        <h1>Your Favorite Recipes</h1>
+        <p>HENRY FOOD APP</p>
         <Link to="/home">
-          <button>Get Start</button>
+          <button className="btn-start">Get Start</button>
         </Link>
       </div>
     </div>

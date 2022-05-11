@@ -37,28 +37,26 @@ function CardsRecipes() {
 
   return (
     <div className="cards">
-      <div>
-        {Recipes.length ? (
-          Recipes.slice(prev, next).map((e) => (
-            <CardRecipe
-              key={e.id}
-              id={e.id}
-              title={e.title}
-              image={e.image}
-              diets={e.diets}
-              spoonacularScore={e.spoonacularScore}
-            />
-          ))
-        ) : (
-          <h1>Recipes not found with this criteria!</h1>
-        )}
-      </div>
-
-      <div>
+      <div className="btn-containner">
         <button onClick={(e) => handlePrev(e)}>{"<<"}</button>
         <span> {current} </span>
         <button onClick={(e) => handleNext(e)}>{">>"}</button>
       </div>
+
+      {Recipes.length ? (
+        Recipes.slice(prev, next).map((e) => (
+          <CardRecipe
+            key={e.id}
+            id={e.id}
+            title={e.title}
+            image={e.image}
+            diets={e.diets}
+            spoonacularScore={e.spoonacularScore}
+          />
+        ))
+      ) : (
+        <h1>Recipes not found with this criteria!</h1> // if there are not recipes
+      )}
     </div>
   );
 }

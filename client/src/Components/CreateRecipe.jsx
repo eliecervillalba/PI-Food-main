@@ -3,6 +3,23 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getTypesDiet, postRecipe } from "../Core/Actions";
 
+//import components
+import NavBar from "./NavBar";
+
+// error validation on form inputs
+function validateError(inputs) {
+  let objError = {};
+  if (!inputs.title) return (objError.name = "Name is required!");
+  if (!inputs.summary) return (objError.summary = "Summary is required!");
+  if (!inputs.spoonacularScore < 0 || !inputs.spoonacularScore > 100)
+    return (objError.spoonacularScore =
+      "The score cannot be below 0 or above 100.");
+  if (!inputs.healthScore < 0 || !inputs.healthScore > 100)
+    return (objError.healthScore =
+      "The Healthscore cannot be below 0 or above 100.");
+  return objError;
+}
+
 // build component
 function CreateRecipe() {
   const typesDiet = useSelector((state) => state.typesDiet);
@@ -12,7 +29,7 @@ function CreateRecipe() {
     dispatch(getTypesDiet());
   }, [dispatch]);
 
-  // create state local for the inputs and error
+  // create local states for the inputs and error validation
   const [inputs, setInputs] = useState({
     title: "",
     summary: "",
@@ -25,18 +42,6 @@ function CreateRecipe() {
   });
 
   const [error, setError] = useState({});
-  function validateError(inputs) {
-    let objError = {};
-    if (!inputs.title) return (objError.name = "Name is required!");
-    if (!inputs.summary) return (objError.summary = "Summary is required!");
-    if (!inputs.spoonacularScore < 0 || !inputs.spoonacularScore > 100)
-      return (objError.spoonacularScore =
-        "The score cannot be below 0 or above 100.");
-    if (!inputs.healthScore < 0 || !inputs.healthScore > 100)
-      return (objError.healthScore =
-        "The Healthscore cannot be below 0 or above 100.");
-    return objError;
-  }
 
   // build handle submit function
   function handleSubmit(e) {
@@ -66,6 +71,7 @@ function CreateRecipe() {
 
   return (
     <div>
+      <NavBar />
       <form onSubmit={(e) => handleSubmit(e)}>
         <div>
           <h1>Create your own recipe</h1>
